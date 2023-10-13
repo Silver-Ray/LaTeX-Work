@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{c+cm}{/*******pid.h*******/}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}ifndef \PYGZus{}PID\PYGZus{}H}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}define \PYGZus{}PID\PYGZus{}H}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k}{typedef}\PYG{+w}{ }\PYG{k}{struct}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{target\PYGZus{}value}\PYG{p}{;}\PYG{+w}{  }\PYG{c+c1}{// 设定的目标值及需要达到的最终值}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{current\PYGZus{}value}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 当前值（可认为外部的反馈值）}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{CAL\PYGZus{}value}\PYG{p}{;}\PYG{+w}{     }\PYG{c+c1}{// 计算需要输出的值}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{sum\PYGZus{}error}\PYG{p}{;}\PYG{+w}{     }\PYG{c+c1}{// 累计的偏差值}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{error}\PYG{p}{;}\PYG{+w}{         }\PYG{c+c1}{// 误差值}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{last\PYGZus{}error}\PYG{p}{;}\PYG{+w}{    }\PYG{c+c1}{// 上一次误差值}
+\PYG{+w}{		}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{pre\PYGZus{}error}\PYG{p}{;}\PYG{+w}{     }\PYG{c+c1}{// 上上一次误差值（增量式pid中使用）}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n}{PID}\PYG{p}{;}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{Velocity\PYGZus{}FeedbackControl}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{Targetvalue}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{Currentvalue}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{extern}\PYG{+w}{ }\PYG{n}{PID}\PYG{+w}{ }\PYG{n}{pid}\PYG{p}{;}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}endif}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+cm}{/*******pid.c*******/}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}pid.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}define Kp 0.10f}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}define Ki 0.25f}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}define Kd 0.00f}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n}{PID}\PYG{+w}{ }\PYG{n}{pid}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{output}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{];}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{Velocity\PYGZus{}FeedbackControl}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{Targetvalue}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{Currentvalue}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{last\PYGZus{}error}\PYG{o}{=}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{error}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{error}\PYG{o}{=}\PYG{n}{Targetvalue}\PYG{o}{\PYGZhy{}}\PYG{n}{Currentvalue}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{sum\PYGZus{}error}\PYG{o}{=}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{sum\PYGZus{}error}\PYG{o}{+}\PYG{p}{(}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{error}\PYG{o}{*}\PYG{n}{Ki}\PYG{p}{);}
+\PYG{+w}{		}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{CAL\PYGZus{}value}\PYG{o}{=}\PYG{p}{(}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{error}\PYG{o}{\PYGZhy{}}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{last\PYGZus{}error}\PYG{p}{)}\PYG{o}{*}\PYG{n}{Kd}\PYG{o}{+}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{error}\PYG{o}{*}\PYG{n}{Kp}\PYG{o}{+}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{sum\PYGZus{}error}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{return}\PYG{+w}{ }\PYG{n}{pid}\PYG{p}{.}\PYG{n}{CAL\PYGZus{}value}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

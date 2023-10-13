@@ -1,0 +1,15 @@
+\contentsline {section}{摘要}{I}{section*.1}%
+\contentsline {section}{\numberline {1}设计要求}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}具体要求}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}设计框图}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}设计思路}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}系统框图}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}核心原理图}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}方案描述}{3}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}电路部分}{3}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}单片机部分}{3}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}小组分工}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}实现效果}{5}{section.3}%
+\contentsline {section}{\numberline {4}不足与改进}{6}{section.4}%
+\contentsline {section}{附录}{7}{section*.7}%
+\contentsfinish 

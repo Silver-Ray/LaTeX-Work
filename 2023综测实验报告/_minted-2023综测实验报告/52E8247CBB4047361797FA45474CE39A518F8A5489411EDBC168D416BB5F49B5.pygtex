@@ -1,0 +1,64 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}stm32f4xx.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}delay.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}LED.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}key.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}serial.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}DAC.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}time.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}ADC.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string.h\PYGZgt{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}pid.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}LCD.h\PYGZdq{}}
+\PYG{+w}{	}\PYG{c+cm}{/*}
+\PYG{c+cm}{	*****Attention***********}
+\PYG{c+cm}{	****target使用4位整数****}
+\PYG{c+cm}{	例:1234表示设定电压1.234V}
+\PYG{c+cm}{	*************************}
+\PYG{c+cm}{	*/}
+\PYG{+w}{	}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{measure}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 电压测量值}
+\PYG{+w}{	}\PYG{n}{u16}\PYG{+w}{ }\PYG{n}{target}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1100}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 电压设定值}
+\PYG{+w}{	}\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{target\PYGZus{}str}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+\PYG{+w}{	}\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{measure\PYGZus{}str}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{c+c1}{// 初始化部分}
+\PYG{+w}{		}\PYG{n}{Serial\PYGZus{}Init}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 波特率115200}
+\PYG{+w}{		}\PYG{n}{delay\PYGZus{}init}\PYG{p}{(}\PYG{l+m+mi}{168}\PYG{p}{);}
+\PYG{+w}{		}\PYG{n}{LED\PYGZus{}Init}\PYG{p}{();}\PYG{+w}{							}\PYG{c+c1}{// 测试LED初始化}
+\PYG{+w}{		}\PYG{n}{Dac1\PYGZus{}Init}\PYG{p}{();}\PYG{+w}{						}\PYG{c+c1}{// DAC1输出初始化}
+\PYG{+w}{		}\PYG{n}{EXTI\PYGZus{}Key\PYGZus{}Config}\PYG{p}{();}\PYG{+w}{					}\PYG{c+c1}{// 按键EXTI中断配置}
+\PYG{+w}{		}\PYG{n}{Adc\PYGZus{}Init}\PYG{p}{();}\PYG{+w}{							}\PYG{c+c1}{// ADC1\PYGZus{}CH5初始化}
+\PYG{+w}{		}\PYG{n}{TIM3\PYGZus{}Int\PYGZus{}Init}\PYG{p}{(}\PYG{l+m+mi}{20000}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8400}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// TIM3初始化，每隔2秒自动中断}
+\PYG{+w}{		}\PYG{n}{LCD\PYGZus{}Init}\PYG{p}{();}\PYG{+w}{							}\PYG{c+c1}{// LED初始化}
+\PYG{+w}{		}\PYG{n}{LCD\PYGZus{}Clear}\PYG{p}{();}\PYG{+w}{						}\PYG{c+c1}{// 清屏}
+\PYG{+w}{		}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{sum\PYGZus{}error}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{		}
+\PYG{+w}{		}\PYG{n}{Dac1\PYGZus{}Set\PYGZus{}Vol}\PYG{p}{(}\PYG{l+m+mi}{1100}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 设置DAC输出默认电压}
+\PYG{+w}{		}
+\PYG{+w}{		}\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{			}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Serial\PYGZus{}GetRxFlag}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// 接收到了数据}
+\PYG{+w}{			}\PYG{p}{\PYGZob{}}
+\PYG{+w}{				}\PYG{n}{Serial\PYGZus{}SendArray}\PYG{p}{(}\PYG{n}{Serial\PYGZus{}RxPacket}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{);}
+\PYG{+w}{				}\PYG{n}{target}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Serial\PYGZus{}RxPacket}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Serial\PYGZus{}RxPacket}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Serial\PYGZus{}RxPacket}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Serial\PYGZus{}RxPacket}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}\PYG{+w}{ }\PYG{c+c1}{// 目标值}
+\PYG{+w}{				}
+\PYG{+w}{				}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}使用串口设定值为\PYGZpc{}.3fV}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{target}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1000.0}\PYG{p}{);}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{tg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)}\PYG{n}{target}\PYG{p}{;}
+\PYG{+w}{			}\PYG{n}{Velocity\PYGZus{}FeedbackControl}\PYG{p}{(}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pid}\PYG{p}{.}\PYG{n}{CAL\PYGZus{}value}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{u16}\PYG{+w}{ }\PYG{n}{tg\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{u16}\PYG{p}{)}\PYG{n}{pid}\PYG{p}{.}\PYG{n}{CAL\PYGZus{}value}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{4.0}\PYG{p}{;}
+\PYG{+w}{			}\PYG{n}{Dac1\PYGZus{}Set\PYGZus{}Vol}\PYG{p}{(}\PYG{n}{tg\PYGZus{}}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 设置电压值为tg\PYGZus{}}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{n}{sprintf}\PYG{p}{(}\PYG{n}{target\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}.3f\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{target}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1000.0}\PYG{p}{);}\PYG{+w}{		                            	}\PYG{c+c1}{// 将target转换为字符串，存储到targrt\PYGZus{}str中}
+\PYG{+w}{			}\PYG{n}{sprintf}\PYG{p}{(}\PYG{n}{measure\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}.3f\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{measure}\PYG{p}{);}\PYG{+w}{	  }\PYG{c+c1}{// 将measure转换为字符串，存储到measure\PYGZus{}str中}
+\PYG{+w}{			}\PYG{n}{LCD\PYGZus{}Display\PYGZus{}Str}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Target  :\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{LCD\PYGZus{}Display\PYGZus{}Str}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Measure :\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{n}{LCD\PYGZus{}Display\PYGZus{}Str}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{target\PYGZus{}str}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{LCD\PYGZus{}Display\PYGZus{}Str}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{measure\PYGZus{}str}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

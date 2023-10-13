@@ -1,0 +1,17 @@
+\contentsline {section}{摘要}{I}{section*.1}%
+\contentsline {section}{\numberline {1}设计要求}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}具体要求}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}方案设计}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}详细电路图}{2}{subsection.1.3}%
+\contentsline {section}{\numberline {2}电路模块设计及参数计算}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}信号发生部分}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}文氏桥振荡电路}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}三角波产生电路}{4}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}运算部分}{4}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}总体思路}{4}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}差分减法器}{5}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}积分部分}{5}{subsubsection.2.2.3}%
+\contentsline {section}{\numberline {3}测试结果}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}信号发生部分}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}运算部分}{7}{subsection.3.2}%
+\contentsfinish 

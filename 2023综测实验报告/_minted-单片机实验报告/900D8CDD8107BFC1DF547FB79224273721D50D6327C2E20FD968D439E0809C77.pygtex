@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{c+c1}{// 配置按键中断服务函数}
+\PYG{+w}{	}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{EXTI9\PYGZus{}5\PYGZus{}IRQHandler}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}GetITStatus}\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}Line9}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n}{RESET}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// KEY1按下}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{			}\PYG{c+c1}{// LED0取反}
+\PYG{+w}{			}\PYG{n}{GPIO\PYGZus{}ToggleBits}\PYG{p}{(}\PYG{n}{GPIOF}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GPIO\PYGZus{}Pin\PYGZus{}9}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{target}\PYG{+w}{ }\PYG{o}{\PYGZhy{}=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 设定值降低0.1V}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}使用按键设定值为\PYGZpc{}.3fV}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{target}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1000.0}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{EXTI\PYGZus{}ClearITPendingBit}\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}Line9}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}GetITStatus}\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}Line8}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n}{RESET}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// KEY0按下}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{			}\PYG{c+c1}{// LED1取反}
+\PYG{+w}{			}\PYG{n}{GPIO\PYGZus{}ToggleBits}\PYG{p}{(}\PYG{n}{GPIOF}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GPIO\PYGZus{}Pin\PYGZus{}10}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{target}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 设定值增加0.1V}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}使用按键设定值为\PYGZpc{}.3fV}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{target}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1000.0}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{EXTI\PYGZus{}ClearITPendingBit}\PYG{p}{(}\PYG{n}{EXTI\PYGZus{}Line8}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{c+c1}{// 定时器3中断服务函数}
+\PYG{+w}{	}\PYG{c+c1}{// 每隔两秒输出一次值}
+\PYG{+w}{	}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{TIM3\PYGZus{}IRQHandler}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{u16}\PYG{+w}{ }\PYG{n}{adcx}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{TIM\PYGZus{}GetITStatus}\PYG{p}{(}\PYG{n}{TIM3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TIM\PYGZus{}IT\PYGZus{}Update}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SET}\PYG{p}{)}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{			}\PYG{n}{adcx}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Get\PYGZus{}Adc\PYGZus{}Average}\PYG{p}{(}\PYG{n}{ADC\PYGZus{}Channel\PYGZus{}5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 获取通道5的转换值，20次取平均}
+\PYG{+w}{			}\PYG{n}{measure}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{float}\PYG{p}{)}\PYG{n}{adcx}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{3.3}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{4096}\PYG{p}{);}\PYG{+w}{	   }\PYG{c+c1}{// 获取计算后的带小数的实际电压值，比如3.1111}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}AD采样电压为\PYGZpc{}.3fV}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{measure}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}测量电压为\PYGZpc{}.3fV}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{measure}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}采样完成}\PYG{l+s+se}{\PYGZbs{}r\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{n}{TIM\PYGZus{}ClearITPendingBit}\PYG{p}{(}\PYG{n}{TIM3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TIM\PYGZus{}IT\PYGZus{}Update}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 清除中断标志位}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
