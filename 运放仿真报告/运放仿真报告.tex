@@ -26,37 +26,37 @@
 \begin{document}
 \maketitle
 \section{放大电路}
-\subsection{同向放大电路}
+\subsection{同相放大电路}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{反向放大器}
-	\caption{反向放大器}
+	\includegraphics[width=0.5\textwidth]{反相放大器}
+	\caption{反相放大器}
 \end{figure}
 增益:
 $$A_v = - \frac{R_2}{R_1}$$
 
 $R_3$的作用为阻抗匹配，取值为$R_1//R_2$.
 
-输入电阻$R_i=R_1$, 输出电阻$R_0 = \infty$.
-\subsection{反向放大电路}
+输入电阻$R_i=R_1$, 输出电阻$R_o = 0$.
+\subsection{反相放大电路}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{同向放大器}
-	\caption{同向放大器}
+	\includegraphics[width=0.5\textwidth]{同相放大器}
+	\caption{同相放大器}
 \end{figure}
 增益:
 $$A_v=1+\frac{R_2}{R_1}$$
 
 $R_3$的作用为阻抗匹配，取值为$R_1//R_2$.
 
-输入电阻$R_i=\infty$, 输出电阻$R_0 = \infty$.
+输入电阻$R_i=\infty$, 输出电阻$R_0 = 0$.
 
 \section{加减电路}
-\subsection{反向加法器}
+\subsection{反相加法器}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{反向加法器}
-	\caption{反向加法器}
+	\includegraphics[width=0.5\textwidth]{反相加法器}
+	\caption{反相加法器}
 \end{figure}
 增益:
 $$A_v=-(\frac{R_2}{R_1}\cdot V_{i1}+\frac{R_3}{R_1}\cdot V_{i2}+\frac{R_4}{R_1}\cdot V_{i3})$$
@@ -65,19 +65,19 @@ $R_5$的作用为阻抗匹配，取值为$R_1//R_2//R_3//R_4$.
 
 根据不同的输入端口，$R_i$取不同的值.
 
-输出电阻:$R_o = \infty$.
-\subsection{同向加法器}
+输出电阻: $R_o = 0$.
+\subsection{同相加法器}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{同向加法器}
-	\caption{同向加法器}
+	\includegraphics[width=0.5\textwidth]{同相加法器}
+	\caption{同相加法器}
 \end{figure}
 增益:
 $$A_v=(1+\frac{R_6}{R_1})\cdot(\frac{R_3//R_4//R_5}{R_2+R_3//R_4//R_5}\cdot V_{i1}+\frac{R_2//R_4//R_5}{R_3+R_2//R_4//R_5}\cdot V_{i2}+\frac{R_2//R_3//R_5}{R_4+R_2//R_3//R_5}\cdot V_{i3})$$
 
 $R_5$的作用为阻抗匹配，可省略，取值满足关系式$R_1//R_6=R_2//R_3//R_4//R_5$.
 
-输入电阻:$R_i=\infty$,输出电阻:$R_o = \infty$.
+输入电阻:$R_i=\infty$,输出电阻:$R_o = 0$.
 
 \subsection{差分减法电路}
 \begin{figure}[H]
@@ -92,31 +92,31 @@ $$Vo = (1+\frac{R_2}{R_1})(\frac{\frac{R_4}{R_3}}{1+\frac{R_4}{R_3}})V_{i2}-\fra
 
 根据不同的输入端口，$R_i$取不同的值.
 
-输出电阻$R_o=\infty$.
+输出电阻$R_o=0$.
 
 \section{积分电路}
-\subsection{反向积分电路}
+\subsection{反相积分电路}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{反向积分电路}
-	\caption{反向积分电路}
+	\includegraphics[width=0.5\textwidth]{反相积分电路}
+	\caption{反相积分电路}
 \end{figure}
 传递函数:
 $$V_i = -\frac{1}{RC}\int V_i dt$$
 
-输入电阻$R_i=\infty$,输出电阻$R_o=\infty$.
+输入电阻$R_i=\infty$,输出电阻$R_o=0$.
 
-\subsection{实用型反向积分电路}
+\subsection{实用型反相积分电路}
 在使用积分器时，为了防止低频信号增益过高，需在电容旁并联一个电阻加以限制
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{实用型反向积分电路}
-	\caption{实用型反向积分电路}
+	\includegraphics[width=0.5\textwidth]{实用型反相积分电路}
+	\caption{实用型反相积分电路}
 \end{figure}
-电路特性同反向积分电路.
+电路特性同反相积分电路.
 
 \section{微分电路}
 \begin{figure}[H]
@@ -127,7 +127,7 @@ $$V_i = -\frac{1}{RC}\int V_i dt$$
 传输函数:
 $$V_o = -RC\frac{dV_i}{dt}$$
 
-输入阻抗:$Z_i=\frac{1}{jwC}$,输出阻抗$Z_o=\infty$.
+输入阻抗:$Z_i=\frac{1}{jwC}$,输出阻抗$Z_o=0$.
 \section{指数与对数电路}
 \subsection{指数运算电路}
 \begin{figure}
@@ -200,5 +200,5 @@ $$\left. \begin{array}  { l  }  { A _ { a } = \frac { U _ { o } ( s ) } { U _ { 
 \end{figure}
 三角波输出的幅度$U_{O1M}=\pm U_T = \pm \frac{R_1}{R_2}U_z$，方波的幅值$U_{OM}=\pm U_Z$，波形的周期为$T=\frac{4R_1RC}{R_2}$。得到了线性理想的三角波
 \subsection{锯齿波发生电路}
-\end{document}
 
+\end{document}

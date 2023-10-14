@@ -1,6 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.28)  13 OCT 2023 22:02
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.28)  15 OCT 2023 00:00
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **d:/LaTeX_work/运放仿真报告/运放仿真报告
@@ -759,32 +759,32 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
 (Font)              using `TU/ptm/m/n' instead on input line 28.
 
-File: ./graphics//反向放大器.png Graphic file (type bmp)
-<./graphics//反向放大器.png>
+File: ./graphics//反相放大器.png Graphic file (type bmp)
+<./graphics//反相放大器.png>
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
-File: ./graphics//同向放大器.png Graphic file (type bmp)
-<./graphics//同向放大器.png>
+File: ./graphics//同相放大器.png Graphic file (type bmp)
+<./graphics//同相放大器.png>
 [1
 
 ]
-File: ./graphics//反向加法器.png Graphic file (type bmp)
-<./graphics//反向加法器.png>
+File: ./graphics//反相加法器.png Graphic file (type bmp)
+<./graphics//反相加法器.png>
  [2]
-File: ./graphics//同向加法器.png Graphic file (type bmp)
-<./graphics//同向加法器.png>
+File: ./graphics//同相加法器.png Graphic file (type bmp)
+<./graphics//同相加法器.png>
 File: ./graphics//差分减法电路.png Graphic file (type bmp)
 <./graphics//差分减法电路.png>
  [3]
-File: ./graphics//反向积分电路.png Graphic file (type bmp)
-<./graphics//反向积分电路.png>
+File: ./graphics//反相积分电路.png Graphic file (type bmp)
+<./graphics//反相积分电路.png>
  [4]
-File: ./graphics//实用型反向积分电路.png Graphic file (type bmp)
-<./graphics//实用型反向积分电路.png>
+File: ./graphics//实用型反相积分电路.png Graphic file (type bmp)
+<./graphics//实用型反相积分电路.png>
  [5]
 File: ./graphics//微分电路.png Graphic file (type bmp)
 <./graphics//微分电路.png>
@@ -809,7 +809,7 @@ File: ./graphics//方波和三角波发生电路.png Graphic file (type bmp)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `运放仿真报告.out' has not changed.
-(rerunfilecheck)             Checksum: FFE1CCB096120251181E9DAE9C999FF9;2191.
+(rerunfilecheck)             Checksum: 59DEFF1E404EBA3B8B676688B2C915B0;2191.
  ) 
 Here is how much of TeX's memory you used:
  24725 strings out of 476683
